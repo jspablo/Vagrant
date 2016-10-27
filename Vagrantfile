@@ -17,16 +17,19 @@ Vagrant.configure("2") do |config|
      sl1.vm.provision "network-config", type: "shell" do |s|
 	     # Configuración de red del servidor
 	     # argumentos?? 
+	s.path = "scripts/network-config.sh"
      end
 
      sl1.vm.provision "ipa-server-install", type: "shell" do |s|
 	     # Instalación del servidor IPA
 	     # argumentos??
+	s.path = "scripts/ipa-server-install.sh"
      end
      sl1.vm.provision "ipa-server-addusers", type: "shell" do |s|
 	     # Añadir usuarios al servidor IPA 
 	     # argumentos??
 	s.args = "usuarios.csv"
+	s.path = "scripts/ipa-server-install.sh"
      end
   end	
 
@@ -51,9 +54,11 @@ Vagrant.configure("2") do |config|
        cli.vm.provision "network-config", type: "shell" do |s|
 	        # Configuración de red del cliente 
 		# (mismo script que en el servidor, pero distintos argumentos!!)
+		s.path = "scripts/network-config.sh"
        end
        cli.vm.provision "ipa-client-install", type: "shell" do |s|
 	       # Instalación del cliente IPA
+		s.path = "scripts/ipa-client-install.sh"
        end
     end
   end	
