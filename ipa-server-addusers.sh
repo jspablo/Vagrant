@@ -53,9 +53,9 @@ for i in $uservar
 do	
 	if ipa user-show $uservar 
 	then
-		echo "No existe nubaso"
+		echo ""
 	else
-		echo "FUCK DA POLICE"
+		echo ""
 	fi
 done  
 
