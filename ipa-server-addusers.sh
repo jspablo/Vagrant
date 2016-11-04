@@ -53,9 +53,9 @@ for i in $uservar
 do	
 	if ipa user-show $uservar 
 	then
-		echo ""
+		echo "echo $uservar"
 	else
-		echo ""
+		echo "User not in .csv"
 	fi
 done  
 
