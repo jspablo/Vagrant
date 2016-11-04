@@ -19,6 +19,7 @@ source /vagrant/scripts/common.sh
 
 # 1) Comprobamos si ipa-client está instalado, en caso contrario lo instalamos:
 packages="ipa-client"
+
 # if...
 	yum -y install $packages
 #fi
@@ -33,7 +34,7 @@ fichero=$(find /etc/ipa/ -name "default.conf")
 if [ -z "$fichero" ]
 	then
 	echo 'No existe el fichero /etc/ipa/default.conf'
-	else
+	else #Se deberia comprobar
 	ipa-server-install -a Virtual2016 -p Virtual2016 
 	--hostname=sl1.admon.lab -r ADMON.LAB -n admon.lab 
 	--setup-dns --no-forwarders -U
