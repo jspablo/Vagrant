@@ -27,6 +27,17 @@ packages="ipa-client"
 #   el fichero /etc/ipa/default.com), y en caso contrario lo añadimos al dominio: 
 echo ${PASSWD_ADMIN} | kinit "admin@${DOMINIO_KERBEROS}" 2>/dev/null 1>/dev/null
 
+
+fichero=$(find /etc/ipa/ -name "default.conf")
+
+if [ -z "$fichero" ]
+	then
+	echo 'No existe el fichero /etc/ipa/default.conf'
+	else
+	ipa-server-install -a Virtual2016 -p Virtual2016 
+	--hostname=sl1.admon.lab -r ADMON.LAB -n admon.lab 
+	--setup-dns --no-forwarders -U
+fi
 #if... Existe el fichero /etc/ipa/default.conf 
 #then
    # INSTALAR el cliente IPA (instalación desatendida)
