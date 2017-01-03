@@ -31,13 +31,11 @@ echo ${PASSWD_ADMIN} | kinit "admin@${DOMINIO_KERBEROS}" 2>/dev/null 1>/dev/null
 
 fichero=$(find /etc/ipa/ -name "default.conf")
 
-if [ -z "$fichero" ]
+if [ -f "$fichero" ]
 	then
 	echo 'No existe el fichero /etc/ipa/default.conf'
 	else #Se deberia comprobar
-	ipa-server-install -a Virtual2016 -p Virtual2016 
-	--hostname=sl1.admon.lab -r ADMON.LAB -n admon.lab 
-	--setup-dns --no-forwarders -U
+	ipa-server-install --principal admin@${DOMINIO_KERBEROS} --password=${PASSWD_ADMIN} --enable-dns-update --mkhomedir --unattended
 fi
 #if... Existe el fichero /etc/ipa/default.conf 
 #then
